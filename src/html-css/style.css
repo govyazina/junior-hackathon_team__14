@@ -1,0 +1,55 @@
+:root {
+  --color-back: #f1ecea;
+  --color-orange: #e37037;
+  --color-gray: #646669;
+  --color-green: #81b0a5;
+}
+
+*,
+::after,
+::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'roboto mono', sans-serif;
+  background-color: var(--color-back);
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+header {
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 60%;
+}
+
+header h1 {
+  color: var(--color-orange);
+}
+
+.settingsIcon {
+  display: flex;
+  align-items: center;
+}
+
+.settingsIcon:hover svg {
+  fill: var(--color-orange);
+  cursor: pointer;
+}
+
+.settingsIcon:active svg {
+  scale: 0.9;
+}
+
+.settingsIcon svg {
+  fill: var(--color-gray);
+  transition: fill 0.3s, scale 0.2s;
+}
