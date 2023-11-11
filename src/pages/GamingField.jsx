@@ -4,12 +4,23 @@ import Picture from "../ui/Picture";
 function GamingField({ pictureLayout, numberPictureOpen, dispatch }) {
   useEffect(
     function () {
-      if (numberPictureOpen.length)
-        numberPictureOpen.forEach((element) => {
-          console.log(pictureLayout[element]);
-        });
+      if (numberPictureOpen.length < 2) return;
+      else {
+        const onePictureId = pictureLayout[numberPictureOpen[0]].id;
+        const twoPictureId = pictureLayout[numberPictureOpen[1]].id;
+        if (onePictureId === twoPictureId) {
+          dispatch({
+            type: "picturesMatched",
+            payload: [
+              pictureLayout[numberPictureOpen[0]],
+              pictureLayout[numberPictureOpen[1]],
+            ],
+          });
+        }
+        dispatch({ type: "move" });
+      }
     },
-    [numberPictureOpen]
+    [numberPictureOpen, dispatch, pictureLayout]
   );
 
   return (

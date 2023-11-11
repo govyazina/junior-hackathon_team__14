@@ -12,7 +12,7 @@ const templData = [
 const initialState = {
   gameStarted: false, //начата ли игра
   pictureLayout: templData, //будет массив с объектами картинок
-  pictureLayoutOpen: [], //будет номеров открытых карточек
+  pictureLayoutOpen: [], //будет массив номеров открытых карточек
   pictureOpen: 0, //счетчик количества открытых картинок
   numberPictureOpen: [], //индексы открытых картинок для смены класса
   moves: 0, //счетчик ходов
@@ -30,11 +30,31 @@ function reducer(state, action) {
         numberPictureOpen: [...state.numberPictureOpen, action.payload],
       };
     }
-    case "pictureClose": {
-      return;
+    case "picturesMatched": {
+      return {
+        ...state,
+        pictureLayoutOpen: [...state.pictureLayoutOpen, ...action.payload],
+      };
     }
+    case "picturesDidntMatch": {
+      return {
+        ...state,
+        pictureOpen: 0,
+      };
+    }
+    // case "pictureClose": {
+    //   return;
+    // }
     case "move": {
-      return { ...state, moves: state.moves++ };
+      return {
+        ...state,
+        pictureOpen: 0,
+        numberPictureOpen: [],
+        moves: state.moves + 1,
+      };
+    }
+    case "victory": {
+      return;
     }
     case "reset": {
       return { ...initialState, gameStarted: true };
