@@ -1,4 +1,4 @@
-import CardСover from "./CardСover";
+import CardСover from "./CardCover";
 
 function Picture({ id, img, onClick, numberPictureOpen, position }) {
   if (!numberPictureOpen.length) return <CardСover onClick={onClick} />;
