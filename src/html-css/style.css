@@ -106,7 +106,7 @@ main {
 }
 
 .cell {
-  background-image: url(/junior-hackathon_team__14/src/assets/icons/paws.svg);
+  background-image: url(../assets/icons/paws.svg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -130,7 +130,7 @@ main {
 }
 
 .cell.active {
-  background-image: url(/junior-hackathon_team__14/src/assets/images/1fox.svg);
+  background-image: url(../assets/images/025-fox.svg);
   background-color: var(--color-active);
 }
 
@@ -180,4 +180,8 @@ footer {
   flex-direction: column;
   align-items: center;
   gap: 100px;
+}
+
+.finish__wrapper h2 {
+  color: var(--color-gray);
 }
