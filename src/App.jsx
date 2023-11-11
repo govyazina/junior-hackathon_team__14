@@ -3,11 +3,8 @@ import "./App.css";
 import Header from "./ui/Header";
 import StartGame from "./pages/StartGame";
 import GamingField from "./pages/GamingField";
-const templData = [
-  { id: 1, position: 0, img: "./images/003-flamingo.svg" },
-  { id: 2, position: 1, img: "./images/016-panda bear.svg" },
-  { id: 1, position: 2, img: "./images/003-flamingo.svg" },
-];
+import templData from "./randomizationPictures/randomizationPictures.js";
+
 
 const initialState = {
   gameStarted: false, //начата ли игра
