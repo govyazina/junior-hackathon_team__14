@@ -16,6 +16,7 @@
 body {
   font-family: 'roboto mono', sans-serif;
   background-color: var(--color-back);
+  height: 100vh;
 }
 
 .wrapper {
@@ -52,4 +53,40 @@ header h1 {
 .settingsIcon svg {
   fill: var(--color-gray);
   transition: fill 0.3s, scale 0.2s;
+}
+
+.startBtn {
+  background-color: var(--color-orange);
+  color: var(--color-back);
+  width: 514px;
+  height: 110px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 50px;
+  transition: opacity 0.3s, scale 0.3s;
+}
+
+.startBtn:hover {
+  opacity: 0.8;
+}
+
+.startBtn:active {
+  scale: 0.99;
+}
+
+main {
+  height: 80vh;
+  display: flex;
+  align-items: center;
+}
+
+.link {
+  text-decoration: none;
+  color: var(--color-gray);
+  transition: color 0.3s;
+}
+
+.link:hover {
+  color: var(--color-orange);
 }
