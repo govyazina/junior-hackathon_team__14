@@ -3,11 +3,7 @@ import "./App.css";
 import Header from "./ui/Header";
 import StartGame from "./pages/StartGame";
 import GamingField from "./pages/GamingField";
-const templData = [
-  { id: 1, position: 0, img: "../../public/images/003-flamingo.svg" },
-  { id: 2, position: 1, img: "../../public/images/016-panda bear.svg" },
-  { id: 1, position: 2, img: "../../public/images/003-flamingo.svg" },
-];
+import templData from "./randomizationPictures/randomizationPictures";
 
 const initialState = {
   gameStarted: false, //начата ли игра
@@ -16,6 +12,7 @@ const initialState = {
   pictureOpen: 0, //счетчик количества открытых картинок
   numberPictureOpen: [], //индексы открытых картинок для смены класса
   moves: 0, //счетчик ходов
+  historyGame: [],
 };
 function reducer(state, action) {
   switch (action.type) {
@@ -34,6 +31,7 @@ function reducer(state, action) {
       return {
         ...state,
         pictureLayoutOpen: [...state.pictureLayoutOpen, ...action.payload],
+        historyGame: [...state.historyGame, ...action.payload],
       };
     }
     case "picturesDidntMatch": {
