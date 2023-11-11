@@ -2,7 +2,7 @@ import { useReducer } from "react";
 import "./App.css";
 import Header from "./ui/Header";
 import StartGame from "./pages/StartGame";
-import GamingField from "./pages/gamingField";
+import GamingField from "./pages/GamingField";
 const templData = [
   { id: 1, position: 0, img: "../../public/images/003-flamingo.svg" },
   { id: 2, position: 1, img: "../../public/images/016-panda bear.svg" },
