@@ -16,20 +16,17 @@
 body {
   font-family: 'roboto mono', sans-serif;
   background-color: var(--color-back);
-  height: 100vh;
 }
 
 .wrapper {
-  display: flex;
-  justify-content: center;
+  margin: 0 auto;
+  max-width: 1280px;
 }
 
-header {
-  margin-top: 50px;
+.header__wrapper {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  width: 60%;
+  margin: 50px 50px 0 50px;
 }
 
 header h1 {
@@ -58,7 +55,8 @@ header h1 {
 .startBtn {
   background-color: var(--color-orange);
   color: var(--color-back);
-  width: 514px;
+  width: 40vw;
+  min-width: 315px;
   height: 110px;
   border-radius: 20px;
   border: none;
@@ -77,6 +75,56 @@ header h1 {
 
 main {
   height: 80vh;
+  display: flex;
+  align-items: center;
+}
+
+.main__header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.turns {
+  display: flex;
+  align-items: center;
+  color: var(--color-gray);
+  font-size: 20px;
+}
+
+.main__wrapper {
+  width: 550px;
+}
+
+.board {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.cell {
+  background-image: url(/junior-hackathon_team__14/src/assets/icons/paws.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: var(--color-green);
+  width: 95px;
+  height: 95px;
+  border-radius: 15px;
+}
+
+.resetBtn {
+  border: none;
+  width: 50px;
+  height: 50px;
+}
+
+.resetBtn img {
+  background: var(--color-back);
+  width: 100%;
+}
+
+footer {
   display: flex;
   align-items: center;
 }
