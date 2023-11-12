@@ -34,25 +34,6 @@ header h1 {
   color: var(--color-orange);
 }
 
-.settingsIcon {
-  display: flex;
-  align-items: center;
-}
-
-.settingsIcon:hover svg {
-  fill: var(--color-orange);
-  cursor: pointer;
-}
-
-.settingsIcon:active svg {
-  scale: 0.9;
-}
-
-.settingsIcon svg {
-  fill: var(--color-gray);
-  transition: fill 0.3s, scale 0.2s;
-}
-
 .startBtn {
   background-color: var(--color-orange);
   color: var(--color-back);
@@ -104,7 +85,7 @@ main {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 30px;
+  gap: 15px;
 }
 
 .cell {
@@ -113,8 +94,8 @@ main {
   background-repeat: no-repeat;
   background-size: contain;
   background-color: var(--color-green);
-  width: 95px;
-  height: 95px;
+  width: 120px;
+  height: 120px;
   border-radius: 15px;
   transition: scale 0.3s;
 }
@@ -124,7 +105,7 @@ main {
 }
 
 .cell.hide:hover {
-  scale: 1.2;
+  scale: 1.15;
 }
 
 .cell.hide:active {
