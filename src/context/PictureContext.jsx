@@ -30,7 +30,6 @@ function changeStatusPicture(arrPicture, arrPos) {
 }
 
 function reducer(state, action) {
-  console.log(action)
   switch (action.type) {
     case "startGame": {
       return { ...state, pictureLayout: randomArrPicture(), gameStarted: true };
