@@ -15,7 +15,7 @@
 }
 
 body {
-  font-family: 'roboto mono', sans-serif;
+  font-family: "roboto mono", sans-serif;
   background-color: var(--color-back);
 }
 
@@ -215,7 +215,7 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 120px;
+  gap: 50px;
 }
 
 .finish__wrapper h2 {
