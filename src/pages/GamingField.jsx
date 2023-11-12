@@ -24,7 +24,7 @@ function GamingField() {
               type: "pictureClose",
               payload: [onePicturePosition, twoPicturePosition],
             });
-          }, 2000);
+          }, 1500);
         }
       }
     },
