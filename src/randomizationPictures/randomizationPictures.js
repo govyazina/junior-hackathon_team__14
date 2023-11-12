@@ -31,8 +31,9 @@ function createTemplData(randomArray, imagePaths) {
         const id = randomArray[i];
         const position = i;
         const img = imagePaths[id];
+        const open = false;
 
-        templData.push({ id, position, img });
+        templData.push({ id, position, open, img });
     }
 
     return templData;
@@ -41,14 +42,14 @@ function createTemplData(randomArray, imagePaths) {
 let randomArray = createRandomArray();
 console.log(randomArray);
 let imagePaths = [
-    '../../public/images/003-flamingo.svg',
-    '../../public/images/008-hedgehog.svg',
-    '../../public/images/016-panda bear.svg',
-    '../../public/images/023-rabbit.svg',
-    '../../public/images/025-fox.svg',
-    '../../public/images/036-zebra.svg',
-    '../../public/images/038-elephant.svg',
-    '../../public/images/040-hippopotamus.sv',
+    './images/003-flamingo.svg',
+    './images/008-hedgehog.svg',
+    './images/016-panda%20bear.svg',
+    './images/023-rabbit.svg',
+    './images/025-fox.svg',
+    './images/036-zebra.svg',
+    './images/038-elephant.svg',
+    './images/040-hippopotamus.svg',
 ];
 
 let templData = createTemplData(randomArray, imagePaths);
