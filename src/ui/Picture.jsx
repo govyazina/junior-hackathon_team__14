@@ -1,17 +1,17 @@
 import { usePicture } from "../context/PictureContext";
 import CardСover from "./CardCover";
 
-function Picture({ position, open, img }) {
+function Picture({ position, open, img, pictureOpen }) {
   const { dispatch } = usePicture();
   return open ? (
     <div
-      className="pictureBox-open"
+      className="cell active"
       onClick={() => {
         dispatch({ type: "pictureOpen", payload: [position] });
       }}
       key={position}
     >
-      <img src={img} className="picture" alt=""></img>
+      <img src={img} className="pictureImg" alt=""></img>
     </div>
   ) : (
     <CardСover

@@ -1,5 +1,5 @@
 function CardСover({ onClick }) {
-  return <div className="pictureBox-closes" onClick={onClick}></div>;
+  return <div className="cell hide" onClick={onClick}></div>;
 }
 
 export default CardСover;

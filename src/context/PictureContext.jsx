@@ -34,6 +34,7 @@ function reducer(state, action) {
       return { ...state, pictureLayout: randomArrPicture(), gameStarted: true };
     }
     case "pictureOpen": {
+      console.log(123);
       if (state.pictureOpen === 2 || state.isGameOver) return state;
       return {
         ...state,
@@ -46,6 +47,7 @@ function reducer(state, action) {
       return {
         ...state,
         pictureOpen: 0,
+        moves: ++state.moves,
         numberPictureOpen: [],
         historyGame: [...state.historyGame, [...action.payload]],
         isGameOver: checkVictory(state.pictureLayout),
@@ -58,7 +60,7 @@ function reducer(state, action) {
         historyGame: [...state.historyGame, [...action.payload]],
         pictureOpen: 0,
         numberPictureOpen: [],
-        moves: state.moves + 1,
+        moves: ++state.moves,
       };
     }
     case "victory": {

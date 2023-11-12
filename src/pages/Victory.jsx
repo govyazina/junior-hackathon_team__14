@@ -1,18 +1,24 @@
 import { usePicture } from "../context/PictureContext";
-import Reset from "../ui/Reset";
-import Button from "../ui/Button.jsx";
+import Button from "../ui/Button";
 
 function Victory() {
   const { dispatch } = usePicture();
   return (
-        <div className="finish__wrapper">
+    <body>
+      <main>
+        <div class="wrapper">
+          <div class="finish__wrapper">
             <h2>Ура! Ты открыл все карточки!</h2>
             <Button
-                onClick={() => dispatch({ type: "reset" })}
-                children={'Попробовать ещё'}
-            />
+              onClick={() => dispatch({ type: "reset" })}
+              className="startBtn"
+            >
+              Попробовать ещё
+            </Button>
+          </div>
         </div>
-
+      </main>
+    </body>
   );
 }
 
