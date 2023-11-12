@@ -4,7 +4,7 @@ import React, {useEffect} from 'react';
 import {useStopwatch} from 'react-timer-hook';
 
 function Navigate() {
-    const {gameStarted, dispatch, moves} = usePicture();
+    const {gameStarted, dispatch, moves, isGameOver} = usePicture();
     const {
         totalSeconds,
         seconds,
@@ -16,6 +16,9 @@ function Navigate() {
         pause,
         reset,
     } = useStopwatch({autoStart: false});
+    useEffect(()=>{
+        dispatch({type: 'time', payload: t()})
+    }, [totalSeconds]);
 
     useEffect(() => {
         if (gameStarted) {

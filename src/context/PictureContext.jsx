@@ -7,6 +7,7 @@ const initialState = {
   pictureOpen: 0, //счетчик количества открытых картинок
   numberPictureOpen: [], //индексы открытых картинок
   moves: 0, //счетчик ходов
+  time: '',
   historyGame: [],
   isGameOver: false,
 };
@@ -29,6 +30,7 @@ function changeStatusPicture(arrPicture, arrPos) {
 }
 
 function reducer(state, action) {
+  console.log(action)
   switch (action.type) {
     case "startGame": {
       return { ...state, pictureLayout: randomArrPicture(), gameStarted: true };
@@ -77,6 +79,12 @@ function reducer(state, action) {
     case "showHistory": {
       return;
     }
+    case "time": {
+      return {
+        ...state,
+        time: action.payload,
+      };
+    }
     default:
       throw new Error("Неизвестный тип");
   }
@@ -92,6 +100,7 @@ function PictureProvaider({ children }) {
       moves,
       historyGame,
       isGameOver,
+      time,
     },
     dispatch,
   ] = useReducer(reducer, initialState);
@@ -107,6 +116,7 @@ function PictureProvaider({ children }) {
         historyGame,
         isGameOver,
         dispatch,
+        time,
       }}
     >
       {children}
