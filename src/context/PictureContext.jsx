@@ -30,6 +30,7 @@ function changeStatusPicture(arrPicture, arrPos) {
 }
 
 function reducer(state, action) {
+  console.log(action)
   switch (action.type) {
     case "startGame": {
       return { ...state, pictureLayout: randomArrPicture(), gameStarted: true };
@@ -99,6 +100,7 @@ function PictureProvaider({ children }) {
       moves,
       historyGame,
       isGameOver,
+      time,
     },
     dispatch,
   ] = useReducer(reducer, initialState);
@@ -114,6 +116,7 @@ function PictureProvaider({ children }) {
         historyGame,
         isGameOver,
         dispatch,
+        time,
       }}
     >
       {children}

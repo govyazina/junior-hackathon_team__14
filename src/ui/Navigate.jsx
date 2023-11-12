@@ -16,12 +16,10 @@ function Navigate() {
         pause,
         reset,
     } = useStopwatch({autoStart: false});
-useEffect(()=>{
-    if (isGameOver) {
+    useEffect(()=>{
         dispatch({type: 'time', payload: t()})
-        reset()
-    }
-}, [isGameOver])
+    }, [totalSeconds]);
+
     useEffect(() => {
         if (gameStarted) {
             start();
