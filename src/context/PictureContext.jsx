@@ -34,7 +34,6 @@ function reducer(state, action) {
       return { ...state, pictureLayout: randomArrPicture(), gameStarted: true };
     }
     case "pictureOpen": {
-      console.log(123);
       if (state.pictureOpen === 2 || state.isGameOver) return state;
       return {
         ...state,
