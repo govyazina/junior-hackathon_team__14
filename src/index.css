@@ -15,7 +15,7 @@
 }
 
 body {
-  font-family: 'roboto mono', sans-serif;
+  font-family: "roboto mono", sans-serif;
   background-color: var(--color-back);
 }
 
@@ -106,7 +106,11 @@ main {
   border-radius: 15px;
   transition: scale 0.3s, background 0.5s;
 }
-
+.pictureImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 .cell.hide {
   cursor: pointer;
 }
