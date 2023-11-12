@@ -4,7 +4,8 @@ import { usePicture } from "../context/PictureContext";
 import Navigate from "../ui/Navigate";
 
 function GamingField() {
-  const { numberPictureOpen, pictureLayout, dispatch } = usePicture();
+  const { numberPictureOpen, pictureLayout, isShowHistory, dispatch } =
+    usePicture();
   useEffect(
     function () {
       if (numberPictureOpen.length < 2) return;
@@ -18,17 +19,17 @@ function GamingField() {
             type: "picturesMatched",
             payload: [onePicturePosition, twoPicturePosition],
           });
-        } else {
+        } else if (!isShowHistory) {
           setTimeout(() => {
             dispatch({
               type: "pictureClose",
               payload: [onePicturePosition, twoPicturePosition],
             });
           }, 1000);
-        }
+        } else return;
       }
     },
-    [numberPictureOpen, dispatch, pictureLayout]
+    [numberPictureOpen, dispatch, pictureLayout, isShowHistory]
   );
 
   return (
