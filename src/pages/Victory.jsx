@@ -4,27 +4,25 @@ import Button from "../ui/Button";
 function Victory() {
   const { dispatch, isShowHistory } = usePicture();
   return (
-    <body>
-      <main>
-        <div class="wrapper">
-          <div class="finish__wrapper">
-            <h2>Ура! Ты открыл все карточки!</h2>
-            <Button
-              onClick={() => dispatch({ type: "reset" })}
-              className="startBtn"
-            >
-              Попробовать ещё
-            </Button>
-            <Button
-              onClick={() => dispatch({ type: "showHistory" })}
-              className="startBtn"
-            >
-              {!isShowHistory ? "Показать историю партии" : "Следующий ход"}
-            </Button>
-          </div>
+    <main>
+      <div className="wrapper">
+        <div className="finish__wrapper">
+          <h2>Ура! Ты открыл все карточки!</h2>
+          <Button
+            onClick={() => dispatch({ type: "reset" })}
+            className="startBtn"
+          >
+            Попробовать ещё
+          </Button>
+          <Button
+            onClick={() => dispatch({ type: "showHistory" })}
+            className="startBtn"
+          >
+            {!isShowHistory ? "Показать историю партии" : "Следующий ход"}
+          </Button>
         </div>
-      </main>
-    </body>
+      </div>
+    </main>
   );
 }
 
