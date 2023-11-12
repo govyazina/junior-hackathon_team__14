@@ -3,11 +3,11 @@ import { usePicture } from "../context/PictureContext";
 function StartGame() {
   const { dispatch } = usePicture();
   return (
-    <div>
-      <button onClick={() => dispatch({ type: "startGame" })}>
-        Начало игры
-      </button>
-    </div>
+        <button
+            onClick={() => dispatch({ type: "startGame" })}
+            className="startBtn">
+            Начать игру
+        </button>
   );
 }
 
