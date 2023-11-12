@@ -1,29 +1,29 @@
-* {
-  margin: 0;
-  padding: 0;
-  border: 1px solid black;
-}
-.pictureBox {
-  width: 150px;
-  height: 150px;
-}
-.picture {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.pictureBox-open {
-  width: 150px;
-  height: 150px;
-}
-.pictureBox-closes {
-  width: 150px;
-  height: 150px;
-  background-color: bisque;
-}
-.gamingField {
-  display: flex;
-  flex-wrap: wrap;
-  width: 700px;
-  gap: 10px;
-}
+/** {*/
+/*  margin: 0;*/
+/*  padding: 0;*/
+/*  border: 1px solid black;*/
+/*}*/
+/*.pictureBox {*/
+/*  width: 150px;*/
+/*  height: 150px;*/
+/*}*/
+/*.picture {*/
+/*  width: 100%;*/
+/*  height: 100%;*/
+/*  object-fit: cover;*/
+/*}*/
+/*.pictureBox-open {*/
+/*  width: 150px;*/
+/*  height: 150px;*/
+/*}*/
+/*.pictureBox-closes {*/
+/*  width: 150px;*/
+/*  height: 150px;*/
+/*  background-color: bisque;*/
+/*}*/
+/*.gamingField {*/
+/*  display: flex;*/
+/*  flex-wrap: wrap;*/
+/*  width: 700px;*/
+/*  gap: 10px;*/
+/*}*/
