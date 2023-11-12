@@ -4,10 +4,12 @@ import Reset from "../ui/Reset";
 function Victory() {
   const { dispatch } = usePicture();
   return (
-    <div>
-      <p>Начать сначала</p>
-      <Reset onClick={() => dispatch({ type: "reset" })} />
-    </div>
+        <div className="finish__wrapper">
+            <h2>Ура! Ты открыл все карточки!</h2>
+            <Reset onClick={() => dispatch({ type: "reset" })} />
+            <button className="startBtn">Попробовать ещё</button>
+        </div>
+
   );
 }
 

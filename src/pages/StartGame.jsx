@@ -1,13 +1,13 @@
 import { usePicture } from "../context/PictureContext";
+import Button from "../ui/Button.jsx";
 
 function StartGame() {
   const { dispatch } = usePicture();
   return (
-        <button
-            onClick={() => dispatch({ type: "startGame" })}
-            className="startBtn">
-            Начать игру
-        </button>
+      <Button
+          onClick={() => dispatch({ type: "startGame" })}
+          children={'Начать игру'}
+          />
   );
 }
 
