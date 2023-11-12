@@ -97,7 +97,7 @@ main {
   width: 120px;
   height: 120px;
   border-radius: 15px;
-  transition: scale 0.3s;
+  transition: scale 0.3s, background 0.5s;
 }
 
 .cell.hide {
@@ -167,6 +167,13 @@ footer {
 
 .finish__wrapper h2 {
   color: var(--color-gray);
+}
+
+.flip-animation {
+  animation-name: flip;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
 
 @media screen and (max-width: 768px) {
