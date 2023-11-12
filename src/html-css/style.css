@@ -59,6 +59,7 @@ header h1 {
   width: 40vw;
   padding: 10px;
   min-width: 315px;
+  max-width: 650px;
   height: 110px;
   border-radius: 20px;
   border: none;
