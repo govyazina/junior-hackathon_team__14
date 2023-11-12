@@ -24,10 +24,13 @@ body {
   max-width: 1280px;
 }
 
+header {
+  margin: 15px 50px 0 50px;
+}
+
 .header__wrapper {
   display: flex;
   justify-content: space-between;
-  margin: 30px 50px 0 50px;
 }
 
 header h1 {
@@ -55,6 +58,10 @@ header h1 {
 
 .startBtn:active {
   scale: 0.99;
+}
+
+main .wrapper {
+  padding-bottom: 30px;
 }
 
 main {
@@ -145,7 +152,7 @@ main {
 footer {
   display: flex;
   align-items: center;
-  padding-top: 10px;
+  margin-top: 35px;
 }
 
 .link {
@@ -177,13 +184,25 @@ footer {
 }
 
 @media screen and (max-width: 768px) {
+  .header__wrapper {
+    justify-content: center;
+  }
+
+  .board {
+    gap: 8px;
+  }
+
   .cell {
-    width: 65px;
-    height: 65px;
+    width: 90px;
+    height: 90px;
   }
 
   .main__wrapper {
-    width: 350px;
+    width: 450px;
+  }
+
+  footer {
+    margin-top: 15px;
   }
 }
 
