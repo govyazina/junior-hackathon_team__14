@@ -1,6 +1,8 @@
+import { usePicture } from "../context/PictureContext";
 import Reset from "./Reset";
 
-function Header({ gameStarted, moves, dispatch }) {
+function Header() {
+  const { gameStarted, moves, dispatch } = usePicture();
   return (
     <header className="header">
       <div>Заголовок</div>

@@ -32,14 +32,14 @@ function createTemplData(randomArray, imagePaths) {
     const position = i;
     const img = imagePaths[id];
 
-    templData.push({ id, position, img });
+    templData.push({ id, position, img, open: false });
   }
 
   return templData;
 }
 
 let randomArray = createRandomArray();
-console.log(randomArray);
+
 let imagePaths = [
   "../../public/images/003-flamingo.svg",
   "../../public/images/008-hedgehog.svg",
@@ -50,6 +50,10 @@ let imagePaths = [
   "../../public/images/038-elephant.svg",
   "../../public/images/040-hippopotamus.svg",
 ];
+
+export function randomArrPicture() {
+  return createTemplData(createRandomArray(), imagePaths);
+}
 
 let templData = createTemplData(randomArray, imagePaths);
 export default templData;

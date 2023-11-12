@@ -12,8 +12,18 @@
   height: 100%;
   object-fit: cover;
 }
+.pictureBox-open {
+  width: 150px;
+  height: 150px;
+}
 .pictureBox-closes {
   width: 150px;
   height: 150px;
   background-color: bisque;
+}
+.gamingField {
+  display: flex;
+  flex-wrap: wrap;
+  width: 700px;
+  gap: 10px;
 }

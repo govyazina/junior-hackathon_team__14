@@ -1,40 +1,44 @@
 import { useEffect } from "react";
 import Picture from "../ui/Picture";
+import { usePicture } from "../context/PictureContext";
 
-function GamingField({ pictureLayout, numberPictureOpen, dispatch }) {
+function GamingField() {
+  const { numberPictureOpen, pictureLayout, dispatch } = usePicture();
   useEffect(
     function () {
       if (numberPictureOpen.length < 2) return;
       else {
+        console.log(numberPictureOpen.length);
+        const onePicturePosition = pictureLayout[numberPictureOpen[0]].position;
+        const twoPicturePosition = pictureLayout[numberPictureOpen[1]].position;
         const onePictureId = pictureLayout[numberPictureOpen[0]].id;
         const twoPictureId = pictureLayout[numberPictureOpen[1]].id;
         if (onePictureId === twoPictureId) {
           dispatch({
             type: "picturesMatched",
-            payload: [
-              pictureLayout[numberPictureOpen[0]],
-              pictureLayout[numberPictureOpen[1]],
-            ],
+            payload: [onePicturePosition, twoPicturePosition],
           });
+        } else {
+          setTimeout(() => {
+            dispatch({
+              type: "pictureClose",
+              payload: [onePicturePosition, twoPicturePosition],
+            });
+          }, 2000);
         }
-        dispatch({ type: "move" });
       }
     },
     [numberPictureOpen, dispatch, pictureLayout]
   );
 
   return (
-    <div>
+    <div className="gamingField">
       {pictureLayout.map((picture) => (
         <Picture
           key={picture.position}
-          id={picture.id}
-          img={picture.img}
           position={picture.position}
-          numberPictureOpen={numberPictureOpen}
-          onClick={() => {
-            dispatch({ type: "pictureOpen", payload: picture.position });
-          }}
+          open={picture.open}
+          img={picture.img}
         ></Picture>
       ))}
     </div>
