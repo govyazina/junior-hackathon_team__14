@@ -145,7 +145,7 @@ main {
 
 .cell.active {
   background-image: url(../assets/images/025-fox.svg);
-  background-color: var(--color-gray);
+  background-color: white;
 }
 
 .resetBtn {
