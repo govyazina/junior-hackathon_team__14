@@ -1,10 +1,11 @@
 import {usePicture} from "../context/PictureContext";
+import Button from "./Button";
 import Reset from "./Reset";
 import React, {useEffect} from 'react';
 import {useStopwatch} from 'react-timer-hook';
 
 function Navigate() {
-    const {gameStarted, dispatch, moves, isGameOver} = usePicture();
+    const {gameStarted, dispatch, moves, isShowHistory} = usePicture();
     const {
         totalSeconds,
         seconds,
@@ -43,6 +44,14 @@ function Navigate() {
                 {gameStarted && <div className="turns">{t()}</div>}
                 {gameStarted && <Reset onClick={() => dispatch({type: "reset"})}/>}
             </div>
+            {isShowHistory && (
+                <Button
+                    onClick={() => dispatch({ type: "showHistory" })}
+                    className="startBtn"
+                >
+                    Следующий ход
+                </Button>
+            )}
         </>
     );
 }
