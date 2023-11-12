@@ -19,6 +19,20 @@ body {
   background-color: var(--color-back);
 }
 
+.startWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 80px;
+}
+
+.startWrapper h2 {
+  margin: 0 30px;
+  max-width: 900px;
+  text-align: center;
+  color: black;
+}
+
 .wrapper {
   margin: 0 auto;
   max-width: 1280px;
