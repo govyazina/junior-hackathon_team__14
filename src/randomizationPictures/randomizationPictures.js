@@ -8,7 +8,9 @@ function createRandomArray() {
 
   for (let i = 0; i < 16; i++) {
     let randomNumber = generateRandomNumber();
-
+    while (randomNumber === resultArray[i - 1]) {
+      randomNumber = generateRandomNumber();
+    }
     while (numbersCount[randomNumber] >= 2) {
       randomNumber = generateRandomNumber();
     }

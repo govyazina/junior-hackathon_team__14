@@ -1,4 +1,5 @@
 import { usePicture } from "../context/PictureContext";
+import Button from "./Button";
 import Reset from "./Reset";
 
 function Header() {
@@ -8,6 +9,11 @@ function Header() {
       <div>Заголовок</div>
       {gameStarted && moves}
       {gameStarted && <Reset onClick={() => dispatch({ type: "reset" })} />}
+      {gameStarted && (
+        <Button onClick={() => dispatch({ type: "showHistory" })}>
+          Показать историю партии
+        </Button>
+      )}
     </header>
   );
 }

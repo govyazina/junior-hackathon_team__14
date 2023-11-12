@@ -8,18 +8,15 @@ const initialState = {
   numberPictureOpen: [], //индексы открытых картинок
   moves: 0, //счетчик ходов
   historyGame: [],
-  isOpen: false,
+  isGameOver: false,
 };
 const PictureContext = createContext();
 
 function checkVictory(arr) {
-  arr.reduce((acc, picture) => {
-    if (picture.open === false) return acc;
-    else {
-      picture.open === true ? (acc = false) : false;
-      return acc;
-    }
-  }, false);
+  const temp = arr.filter((picture) => {
+    return picture.open === false;
+  });
+  return temp.length <= 0;
 }
 
 function changeStatusPicture(arrPicture, arrPos) {
@@ -37,26 +34,21 @@ function reducer(state, action) {
       return { ...state, pictureLayout: randomArrPicture(), gameStarted: true };
     }
     case "pictureOpen": {
-      console.log(state.pictureOpen);
-      if (state.pictureOpen === 2 || state.isOpen) return state;
+      if (state.pictureOpen === 2 || state.isGameOver) return state;
       return {
         ...state,
-        pictureOpen: state.pictureOpen++,
+        pictureOpen: ++state.pictureOpen,
         pictureLayout: changeStatusPicture(state.pictureLayout, action.payload),
         numberPictureOpen: [...state.numberPictureOpen, action.payload],
       };
     }
     case "picturesMatched": {
-      console.log(checkVictory(state.pictureLayout));
       return {
         ...state,
         pictureOpen: 0,
         numberPictureOpen: [],
         historyGame: [...state.historyGame, [...action.payload]],
-        isOpen: state.pictureLayout.reduce((acc, picture) => {
-          picture.open === false ? (acc = false) : false;
-          return acc;
-        }, false),
+        isGameOver: checkVictory(state.pictureLayout),
       };
     }
     case "pictureClose": {
@@ -72,14 +64,17 @@ function reducer(state, action) {
     case "victory": {
       return;
     }
+
     case "reset": {
-      console.log(randomArrPicture());
       return {
         ...initialState,
         gameStarted: true,
         pictureLayout: randomArrPicture(),
-        isOpen: false,
+        isGameOver: false,
       };
+    }
+    case "showHistory": {
+      return;
     }
     default:
       throw new Error("Неизвестный тип");
@@ -95,7 +90,7 @@ function PictureProvaider({ children }) {
       numberPictureOpen,
       moves,
       historyGame,
-      isOpen,
+      isGameOver,
     },
     dispatch,
   ] = useReducer(reducer, initialState);
@@ -109,7 +104,7 @@ function PictureProvaider({ children }) {
         numberPictureOpen,
         moves,
         historyGame,
-        isOpen,
+        isGameOver,
         dispatch,
       }}
     >
@@ -126,3 +121,5 @@ function usePicture() {
 }
 
 export { PictureProvaider, usePicture };
+
+function openPictureForHistory(objPicture, arrPos) {}

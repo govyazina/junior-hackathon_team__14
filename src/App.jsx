@@ -6,14 +6,14 @@ import Victory from "./pages/Victory";
 import { usePicture } from "./context/PictureContext";
 
 function App() {
-  const { gameStarted, isOpen } = usePicture();
+  const { gameStarted, isGameOver } = usePicture();
 
   return (
     <>
       <Header />
       {!gameStarted && <StartGame />}
+      {isGameOver && <Victory />}
       {gameStarted && <GamingField />}
-      {/* {isOpen && <Victory />} */}
     </>
   );
 }
