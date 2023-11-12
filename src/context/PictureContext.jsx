@@ -7,6 +7,7 @@ const initialState = {
   pictureOpen: 0, //счетчик количества открытых картинок
   numberPictureOpen: [], //индексы открытых картинок
   moves: 0, //счетчик ходов
+  time: '',
   historyGame: [],
   isGameOver: false,
 };
@@ -76,6 +77,12 @@ function reducer(state, action) {
     }
     case "showHistory": {
       return;
+    }
+    case "time": {
+      return {
+        ...state,
+        time: action.payload,
+      };
     }
     default:
       throw new Error("Неизвестный тип");
