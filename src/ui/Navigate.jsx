@@ -1,22 +1,47 @@
-import { usePicture } from "../context/PictureContext";
+import {usePicture} from "../context/PictureContext";
 import Reset from "./Reset";
+import React, {useEffect} from 'react';
+import {useStopwatch} from 'react-timer-hook';
 
 function Navigate() {
-  const { gameStarted, dispatch, moves } = usePicture();
-  return (
-    <>
-      <div className="main__header">
-        {gameStarted && <div className="turns">Ход {moves}</div>}
-        {gameStarted && <Reset onClick={() => dispatch({ type: "reset" })} />}
-      </div>
+    const {gameStarted, dispatch, moves} = usePicture();
+    const {
+        totalSeconds,
+        seconds,
+        minutes,
+        hours,
+        days,
+        isRunning,
+        start,
+        pause,
+        reset,
+    } = useStopwatch({autoStart: false});
 
-      {/* {gameStarted && (
-        <Button onClick={() => dispatch({ type: "showHistory" })}>
-          Показать историю партии
-        </Button>
-      )} */}
-    </>
-  );
+    useEffect(() => {
+        if (gameStarted) {
+            start();
+        } else {
+            pause();
+        }
+    }, [gameStarted]);
+
+    const t = () => {
+        const h = hours < 10 ? ('0' + hours) : hours;
+        const m = minutes < 10 ? ('0' + minutes) : minutes;
+        const s = seconds < 10 ? ('0' + seconds) : seconds;
+
+        return `${h}:${m}:${s}`;
+    };
+
+    return (
+        <>
+            <div className="main__header">
+                {gameStarted && <div className="turns">Ход {moves}</div>}
+                {gameStarted && <div className="turns">{t()}</div>}
+                {gameStarted && <Reset onClick={() => dispatch({type: "reset"})}/>}
+            </div>
+        </>
+    );
 }
 
 export default Navigate;
