@@ -1,7 +1,7 @@
 function Button({ children, onClick }) {
   return (
     <div>
-      <button onClick={onClick}>{children}</button>
+      <button className="startBtn" onClick={onClick}>{children}</button>
     </div>
   );
 }
