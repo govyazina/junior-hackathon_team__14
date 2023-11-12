@@ -1,24 +1,26 @@
+import { usePicture } from "../context/PictureContext";
 import CardСover from "./CardCover";
 
-function Picture({ id, img, onClick, numberPictureOpen, position }) {
-  if (!numberPictureOpen.length) return <CardСover onClick={onClick} />;
-  else {
-    return (
-      <>
-        {numberPictureOpen.map((el) => {
-          if (el === position) {
-            return (
-              <div className="pictureBox-closes" onClick={onClick} key={el}>
-                <img src={img} className="picture" alt=""></img>
-              </div>
-            );
-          } else {
-            return <CardСover onClick={onClick} key={el} />;
-          }
-        })}
-      </>
-    );
-  }
+function Picture({ position, open, img }) {
+  const { dispatch } = usePicture();
+  return open ? (
+    <div
+      className="pictureBox-open"
+      onClick={() => {
+        dispatch({ type: "pictureOpen", payload: [position] });
+      }}
+      key={position}
+    >
+      <img src={img} className="picture" alt=""></img>
+    </div>
+  ) : (
+    <CardСover
+      onClick={() => {
+        dispatch({ type: "pictureOpen", payload: [position] });
+      }}
+      key={position}
+    />
+  );
 }
 
 export default Picture;

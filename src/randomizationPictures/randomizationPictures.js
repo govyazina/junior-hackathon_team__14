@@ -8,7 +8,9 @@ function createRandomArray() {
 
   for (let i = 0; i < 16; i++) {
     let randomNumber = generateRandomNumber();
-
+    while (randomNumber === resultArray[i - 1]) {
+      randomNumber = generateRandomNumber();
+    }
     while (numbersCount[randomNumber] >= 2) {
       randomNumber = generateRandomNumber();
     }
@@ -32,14 +34,14 @@ function createTemplData(randomArray, imagePaths) {
     const position = i;
     const img = imagePaths[id];
 
-    templData.push({ id, position, img });
+    templData.push({ id, position, img, open: false });
   }
 
   return templData;
 }
 
 let randomArray = createRandomArray();
-console.log(randomArray);
+
 let imagePaths = [
   "./images/003-flamingo.svg",
   "./images/008-hedgehog.svg",
@@ -50,6 +52,10 @@ let imagePaths = [
   "./images/038-elephant.svg",
   "./images/040-hippopotamus.svg",
 ];
+
+export function randomArrPicture() {
+  return createTemplData(createRandomArray(), imagePaths);
+}
 
 let templData = createTemplData(randomArray, imagePaths);
 export default templData;
