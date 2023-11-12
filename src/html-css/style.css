@@ -27,7 +27,7 @@ body {
 .header__wrapper {
   display: flex;
   justify-content: space-between;
-  margin: 50px 50px 0 50px;
+  margin: 30px 50px 0 50px;
 }
 
 header h1 {
@@ -84,6 +84,7 @@ main {
 .main__header {
   display: flex;
   justify-content: space-between;
+  padding: 10px 20px;
 }
 
 .turns {
@@ -184,4 +185,24 @@ footer {
 
 .finish__wrapper h2 {
   color: var(--color-gray);
+}
+
+@media screen and (max-width: 768px) {
+  .cell {
+    width: 65px;
+    height: 65px;
+  }
+
+  .main__wrapper {
+    width: 350px;
+  }
+}
+
+@keyframes flip {
+  from {
+    transform: rotate3d(0, 1, 0, 0deg);
+  }
+  to {
+    transform: rotate3d(0, 1, 0, 180deg);
+  }
 }
