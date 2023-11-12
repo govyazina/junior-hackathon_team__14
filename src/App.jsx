@@ -1,5 +1,5 @@
 import "./App.css";
-import Header from "./ui/Header";
+import Navigate from "./ui/Navigate.jsx";
 import StartGame from "./pages/StartGame";
 import GamingField from "./pages/GamingField";
 import Victory from "./pages/Victory";
@@ -10,7 +10,7 @@ function App() {
 
   return (
     <>
-      <Header />
+      <Navigate />
       {!gameStarted && <StartGame />}
       {isGameOver && <Victory />}
       {gameStarted && <GamingField />}

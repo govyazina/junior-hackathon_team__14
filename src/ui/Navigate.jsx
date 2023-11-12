@@ -2,7 +2,7 @@ import { usePicture } from "../context/PictureContext";
 import Button from "./Button";
 import Reset from "./Reset";
 
-function Header() {
+function Navigate() {
   const { gameStarted, moves, dispatch } = usePicture();
   return (
     <header className="header">
@@ -18,4 +18,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default Navigate;
