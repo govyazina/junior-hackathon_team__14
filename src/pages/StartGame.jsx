@@ -4,7 +4,7 @@ import Button from "../ui/Button";
 function StartGame() {
     const {dispatch} = usePicture();
     return (
-        <>
+        <div className="startWrapper">
             <Button
                 className="startBtn"
                 onClick={() => dispatch({type: "startGame"})}
@@ -14,7 +14,7 @@ function StartGame() {
                 запоминай какие зверюшки там появляются
                 и найди всех повторяющихся
             </h2>
-        </>
+        </div>
     );
 }
 
