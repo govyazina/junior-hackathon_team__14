@@ -2,13 +2,19 @@ import { createContext, useContext, useReducer } from "react";
 import { randomArrPicture } from "../randomizationPictures/randomizationPictures";
 
 const initialState = {
-  gameStarted: false, //начата ли игра
-  pictureLayout: [], // массив с объектами картинок
-  pictureOpen: 0, //счетчик количества открытых картинок
-  numberPictureOpen: [], //индексы открытых картинок
-  moves: 0, //счетчик ходов
-  historyGame: [],
-  isGameOver: false,
+  game: {
+    gameStarted: false, //начата ли игра
+    pictureLayout: [], // массив с объектами картинок
+    pictureOpen: 0, //счетчик количества открытых картинок
+    numberPictureOpen: [], //индексы открытых картинок
+    moves: 0, //счетчик ходов
+    isGameOver: false,
+  },
+  history: {
+    isShowHistory: false,
+    historyGame: [],
+    currentStepHistory: 0,
+  },
 };
 const PictureContext = createContext();
 
@@ -31,35 +37,74 @@ function changeStatusPicture(arrPicture, arrPos) {
 function reducer(state, action) {
   switch (action.type) {
     case "startGame": {
-      return { ...state, pictureLayout: randomArrPicture(), gameStarted: true };
-    }
-    case "pictureOpen": {
-      if (state.pictureOpen === 2 || state.isGameOver) return state;
       return {
         ...state,
-        pictureOpen: ++state.pictureOpen,
-        pictureLayout: changeStatusPicture(state.pictureLayout, action.payload),
-        numberPictureOpen: [...state.numberPictureOpen, action.payload],
+        game: {
+          ...state.game,
+          pictureLayout: randomArrPicture(),
+          gameStarted: true,
+        },
       };
+    }
+    case "pictureOpen": {
+      if (state.game.pictureOpen === 2 || state.game.isGameOver) return state;
+      else if (
+        (state.game.numberPictureOpen.length === 1 &&
+          action.payload[0] === state.game.numberPictureOpen[0][0]) ||
+        state.game.isGameOver
+      ) {
+        return state;
+      } else
+        return {
+          ...state,
+          game: {
+            ...state.game,
+            pictureOpen: ++state.game.pictureOpen,
+            pictureLayout: changeStatusPicture(
+              state.game.pictureLayout,
+              action.payload
+            ),
+            numberPictureOpen: [
+              ...state.game.numberPictureOpen,
+              action.payload,
+            ],
+          },
+        };
     }
     case "picturesMatched": {
       return {
         ...state,
-        pictureOpen: 0,
-        moves: ++state.moves,
-        numberPictureOpen: [],
-        historyGame: [...state.historyGame, [...action.payload]],
-        isGameOver: checkVictory(state.pictureLayout),
+        game: {
+          ...state.game,
+          pictureOpen: 0,
+          moves: ++state.game.moves,
+          numberPictureOpen: [],
+          isGameOver: checkVictory(state.game.pictureLayout),
+        },
+        history: {
+          ...state.history,
+          historyGame: [...state.history.historyGame, state.game],
+        },
       };
     }
     case "pictureClose": {
       return {
         ...state,
-        pictureLayout: changeStatusPicture(state.pictureLayout, action.payload),
-        historyGame: [...state.historyGame, [...action.payload]],
-        pictureOpen: 0,
-        numberPictureOpen: [],
-        moves: ++state.moves,
+        game: {
+          ...state.game,
+          pictureLayout: changeStatusPicture(
+            state.game.pictureLayout,
+            action.payload
+          ),
+          pictureOpen: 0,
+          numberPictureOpen: [],
+          moves: ++state.game.moves,
+        },
+
+        history: {
+          ...state.history,
+          historyGame: [...state.history.historyGame, state.game],
+        },
       };
     }
     case "victory": {
@@ -69,13 +114,47 @@ function reducer(state, action) {
     case "reset": {
       return {
         ...initialState,
-        gameStarted: true,
-        pictureLayout: randomArrPicture(),
-        isGameOver: false,
+        game: {
+          ...initialState.game,
+          gameStarted: true,
+          pictureLayout: randomArrPicture(),
+        },
       };
     }
     case "showHistory": {
-      return;
+      if (!state.history.isShowHistory)
+        return {
+          ...state,
+          game: state.history.historyGame[state.history.currentStepHistory],
+          history: {
+            ...state.history,
+            isShowHistory: true,
+            currentStepHistory: ++state.history.currentStepHistory,
+          },
+        };
+      else {
+        if (
+          state.history.currentStepHistory === state.history.historyGame.length
+        ) {
+          return {
+            ...state,
+            history: {
+              ...state.history,
+              isShowHistory: false,
+              currentStepHistory: 0,
+            },
+          };
+        } else {
+          return {
+            ...state,
+            game: state.history.historyGame[state.history.currentStepHistory],
+            history: {
+              ...state.history,
+              currentStepHistory: ++state.history.currentStepHistory,
+            },
+          };
+        }
+      }
     }
     default:
       throw new Error("Неизвестный тип");
@@ -83,19 +162,15 @@ function reducer(state, action) {
 }
 
 function PictureProvaider({ children }) {
-  const [
-    {
-      gameStarted,
-      pictureLayout,
-      pictureOpen,
-      numberPictureOpen,
-      moves,
-      historyGame,
-      isGameOver,
-    },
-    dispatch,
-  ] = useReducer(reducer, initialState);
-
+  const [{ game, history }, dispatch] = useReducer(reducer, initialState);
+  const { gameStarted } = game;
+  const { pictureLayout } = game;
+  const { pictureOpen } = game;
+  const { numberPictureOpen } = game;
+  const { moves } = game;
+  const { isGameOver } = game;
+  const { historyGame } = history;
+  const { isShowHistory } = history;
   return (
     <PictureContext.Provider
       value={{
@@ -105,6 +180,7 @@ function PictureProvaider({ children }) {
         numberPictureOpen,
         moves,
         historyGame,
+        isShowHistory,
         isGameOver,
         dispatch,
       }}

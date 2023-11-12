@@ -2,7 +2,7 @@ import { usePicture } from "../context/PictureContext";
 import Button from "../ui/Button";
 
 function Victory() {
-  const { dispatch } = usePicture();
+  const { dispatch, isShowHistory } = usePicture();
   return (
     <body>
       <main>
@@ -14,6 +14,12 @@ function Victory() {
               className="startBtn"
             >
               Попробовать ещё
+            </Button>
+            <Button
+              onClick={() => dispatch({ type: "showHistory" })}
+              className="startBtn"
+            >
+              {!isShowHistory ? "Показать историю партии" : "Следующий ход"}
             </Button>
           </div>
         </div>
