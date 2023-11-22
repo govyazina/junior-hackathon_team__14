@@ -4,17 +4,24 @@ import { usePicture } from "../context/PictureContext";
 import Navigate from "../ui/Navigate";
 
 function GamingField() {
-  const { numberPictureOpen, pictureLayout, isShowHistory, dispatch } =
-    usePicture();
+  const {
+    numberPictureOpen,
+    pictureLayout,
+    isShowHistory,
+    dispatch,
+    afterIsShowHistory,
+  } = usePicture();
   useEffect(
     function () {
-      if (numberPictureOpen.length < 2) return;
+      if (numberPictureOpen.length < 2 || isShowHistory || afterIsShowHistory)
+        return;
       else {
         const onePicturePosition = pictureLayout[numberPictureOpen[0]].position;
         const twoPicturePosition = pictureLayout[numberPictureOpen[1]].position;
         const onePictureId = pictureLayout[numberPictureOpen[0]].id;
         const twoPictureId = pictureLayout[numberPictureOpen[1]].id;
-        if (onePictureId === twoPictureId) {
+        if (onePicturePosition === twoPicturePosition) return;
+        else if (onePictureId === twoPictureId) {
           dispatch({
             type: "picturesMatched",
             payload: [onePicturePosition, twoPicturePosition],
@@ -29,7 +36,13 @@ function GamingField() {
         } else return;
       }
     },
-    [numberPictureOpen, dispatch, pictureLayout, isShowHistory]
+    [
+      numberPictureOpen,
+      dispatch,
+      pictureLayout,
+      isShowHistory,
+      afterIsShowHistory,
+    ]
   );
 
   return (
