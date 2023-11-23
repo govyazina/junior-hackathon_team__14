@@ -4,12 +4,13 @@ import { randomArrPicture } from "../randomizationPictures/randomizationPictures
 const initialState = {
   game: {
     gameStarted: false, //начата ли игра
+    afterIsShowHistory: false, //была ли показана история
     pictureLayout: [], // массив с объектами картинок
     pictureOpen: 0, //счетчик количества открытых картинок
     numberPictureOpen: [], //индексы открытых картинок
     moves: 0, //счетчик ходов
     isGameOver: false,
-    time: '',
+    time: "",
   },
   history: {
     isShowHistory: false,
@@ -44,6 +45,7 @@ function reducer(state, action) {
           ...state.game,
           pictureLayout: randomArrPicture(),
           gameStarted: true,
+          afterIsShowHistory: false,
         },
       };
     }
@@ -109,7 +111,13 @@ function reducer(state, action) {
       };
     }
     case "victory": {
-      return;
+      return {
+        ...state,
+        history: {
+          ...state.history,
+          historyGame: [...state.history.historyGame, state.game],
+        },
+      };
     }
 
     case "reset": {
@@ -135,10 +143,12 @@ function reducer(state, action) {
         };
       else {
         if (
-          state.history.currentStepHistory === state.history.historyGame.length
+          state.history.currentStepHistory - 1 ===
+          state.history.historyGame.length
         ) {
           return {
             ...state,
+            game: { ...state.game, afterIsShowHistory: true, isGameOver: true },
             history: {
               ...state.history,
               isShowHistory: false,
@@ -160,7 +170,7 @@ function reducer(state, action) {
     case "time": {
       return {
         ...state,
-          game: {...state.game, time: action.payload},
+        game: { ...state.game, time: action.payload },
       };
     }
     default:
@@ -179,6 +189,8 @@ function PictureProvaider({ children }) {
   const { historyGame } = history;
   const { isShowHistory } = history;
   const { time } = game;
+  const { afterIsShowHistory } = game;
+  const movesAll = history.historyGame.length;
   return (
     <PictureContext.Provider
       value={{
@@ -192,6 +204,8 @@ function PictureProvaider({ children }) {
         isGameOver,
         dispatch,
         time,
+        movesAll,
+        afterIsShowHistory,
       }}
     >
       {children}
